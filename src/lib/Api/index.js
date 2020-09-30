@@ -10,3 +10,26 @@ export async function post(url, body) {
   });
   return response.json();
 }
+
+export async function get(url) {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return response.json();
+}
+
+export async function put(url, body) {
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+
+  return response.json();
+}
