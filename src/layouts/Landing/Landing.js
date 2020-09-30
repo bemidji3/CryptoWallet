@@ -11,7 +11,7 @@ function Landing() {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row style={{height: "100vh"}}>
-        <Grid.Column width={3}>
+        <Grid.Column width={4}>
           <div style={{ backgroundColor: "orange", height: "100%", }}>LEFT TEXT</div>
         </Grid.Column>
         <Grid.Column width={8}>

@@ -1,7 +1,7 @@
-import Login from "src/components/layouts/Login";
-import Landing from "src/components/layouts/Landing";
+import Login from "../../layouts/Login";
+import Landing from "../../layouts/Landing"
 
 export const pageMappingConfig = {
   login: Login,
-  landing: Landing,
+  home: Landing,
 };
