@@ -11,9 +11,8 @@ function Login({
   createNewUser,
   formData,
   handleChange,
-  registrationUrl,
 }) {
-  const { first_name, last_name, user_name, password, email } = formData;
+  const { firstName, lastName, userName, password, email, dateOfBirth } = formData;
   return (
     <Grid columns={1}>
       <Grid.Column width={16}>
@@ -22,13 +21,13 @@ function Login({
           <Form>
             <Input
               label="First Name"
-              value={first_name}
-              onChange={(_, { value }) => handleChange("first_name", value)}
+              value={firstName}
+              onChange={(_, { value }) => handleChange("firstName", value)}
             />
             <Input
               label="Last Name"
-              value={last_name}
-              onChange={(_, { value }) => handleChange("last_name", value)}
+              value={lastName}
+              onChange={(_, { value }) => handleChange("lastName", value)}
             />
             <Input
               label="Email"
@@ -36,16 +35,21 @@ function Login({
               onChange={(_, { value }) => handleChange("email", value)}
             />
             <Input
+              label="Date of Birth"
+              value={dateOfBirth}
+              onChange={(_, { value }) => handleChange("dateOfBirth", value)}
+            />
+            <Input
               label="Username"
-              value={user_name}
-              onChange={(_, { value }) => handleChange("user_name", value)}
+              value={userName}
+              onChange={(_, { value }) => handleChange("userName", value)}
             />
             <Input
               label="Password"
               value={password}
               onChange={(_, { value }) => handleChange("password", value)}
             />
-            <Button onClick={() => createNewUser(registrationUrl, formData)}>
+            <Button onClick={() => createNewUser(formData)}>
               Register Now!
             </Button>
           </Form>

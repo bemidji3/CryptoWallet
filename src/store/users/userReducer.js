@@ -13,9 +13,14 @@ const initialState = {
 export default function users(state = initialState, action) {
     switch (action.type) {
         case RECEIVE_USER_DATA:
+            console.log("action ", JSON.stringify(action))
             return {
                 ...state,
-                action.filteredBody,
-            }
+                currentUser: {
+                    ...action.filteredBody,
+                },
+            };
+        default:
+            return state;
     }
 }

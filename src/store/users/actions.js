@@ -20,20 +20,42 @@ export function performRegistration(url, body) {
   };
 }
 
-export getUserData = (userId) => {
-  const User = new Parse.Object.extend("User");
-  const userQuery = new Parse.Query(User)
+export function getUserData(userId) {
+  const User = new Parse.Object.extend("Person");
+  const userQuery = new Parse.Query(User);
 
   userQuery.equalTo("objectId", userId);
 
   userQuery.find().then((data) => {
-    const filteredData = {
-      userName: data.get("userName"),
-      email: data.get("email"),
-      dateOfBirth: data.get("dateOfBirth"),
-      ravenCoin: data.get("ravenCoin"),
-      bitCoin: data.get("bitCoin"),
+    return (dispatch) => {
+      const filteredData = {
+        userName: data.get("userName"),
+        email: data.get("email"),
+        dateOfBirth: data.get("dateOfBirth"),
+        ravenCoin: data.get("ravenCoin"),
+        bitCoin: data.get("bitCoin"),
+      };
+      dispatch(receiveUserData(filteredData))
     }
-    dispatch(receiveUserData(filteredData))
   })
+}
+
+export function createNewUser(formData) {
+  return (dispatch) => {
+    const Person = new Parse.Object.extend("Person");
+    const myNewUser = new Person();
+
+    Object.keys(formData).forEach(key => {
+      console.log("setting key ", key);
+      myNewUser.set(key, formData[key])
+    });
+    dispatch(sendRegistrationRequest(formData));
+    return myNewUser.save().then((result) => {
+      dispatch(receiveRegistrationResponse(result.status))
+      dispatch(receiveUserData(formData))
+    }, (error) => {
+      console.log("error creating user ", error)
+    })
+  }
+
 }

@@ -1,9 +1,10 @@
 export const initialValues = {
   formData: {
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    user_name: "",
+    dateOfBirth: "",
+    userName: "",
     password: "",
   },
 };
