@@ -8,7 +8,7 @@ export default () => {
     const history = useHistory();
 
     const registerUser = body => {
-        dispatch(createNewUser(body))
+        return dispatch(createNewUser(body))
             .then(history.push("/home"), dispatch(changePage("home")))
             .catch((error) => console.log(error));
     };
