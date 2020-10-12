@@ -4,15 +4,16 @@ import "semantic-ui-css/components/grid.css";
 import Form from "../../components/Form";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Link from "../../components/Link";
 import "./Login.scss";
 
 function Login({
   loginString,
-  createNewUser,
+  onSubmit,
   formData,
   handleChange,
 }) {
-  const { firstName, lastName, userName, password, email, dateOfBirth } = formData;
+  const { password, email} = formData;
   return (
     <Grid columns={1}>
       <Grid.Column width={16}>
@@ -20,39 +21,26 @@ function Login({
           {loginString}
           <Form>
             <Input
-              label="First Name"
-              value={firstName}
-              onChange={(_, { value }) => handleChange("firstName", value)}
-            />
-            <Input
-              label="Last Name"
-              value={lastName}
-              onChange={(_, { value }) => handleChange("lastName", value)}
-            />
-            <Input
               label="Email"
               value={email}
               onChange={(_, { value }) => handleChange("email", value)}
             />
             <Input
-              label="Date of Birth"
-              value={dateOfBirth}
-              onChange={(_, { value }) => handleChange("dateOfBirth", value)}
+                label="Password"
+                value={password}
+                onChange={(_, { value }) => handleChange("password", value)}
             />
-            <Input
-              label="Username"
-              value={userName}
-              onChange={(_, { value }) => handleChange("userName", value)}
-            />
-            <Input
-              label="Password"
-              value={password}
-              onChange={(_, { value }) => handleChange("password", value)}
-            />
-            <Button onClick={() => createNewUser(formData)}>
-              Register Now!
+            <Button
+              onClick={() => {
+                onSubmit(formData)
+              }}
+            >
+              Login!
             </Button>
           </Form>
+          <p>
+            Don't have an account? Register <Link to="/register"> here </Link>
+          </p>
         </div>
       </Grid.Column>
     </Grid>

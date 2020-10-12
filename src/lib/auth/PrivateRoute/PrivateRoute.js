@@ -1,8 +1,8 @@
 import React from "react"
-import { getAuthenticationStatus } from "./authService"
+import { getAuthenticationStatus } from "../authService"
 import { Route, Redirect } from "react-router-dom"
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+function PrivateRoute({ component: Component, ...rest }){
   return (
     <Route
       {...rest}

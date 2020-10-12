@@ -1,17 +1,20 @@
-// import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
-// import { createNewUser } from "../../store/users/actions";
-// import { changePage } from "../../store/pages/actions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { register, login } from "../../store/users/actions";
 
-// export default () => {
-//     const dispatch = useDispatch();
-//     const history = useHistory();
+export default () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-//     const registerUser = body => {
-//         return dispatch(createNewUser(body))
-//             .then(history.push("/home"), dispatch(changePage("home")))
-//             .catch((error) => console.log(error));
-//     };
+    const registerUser = (email, password) => {
+        return dispatch(register(email, password))
+            .then(history.push("/home"))
+            .catch((error) => console.log(error));
+    };
 
-//     return { registerUser };
-// }
+    const loginUser = ({ email, password }) => {
+        return dispatch(login(email, password))
+    };
+
+    return { registerUser, loginUser };
+}

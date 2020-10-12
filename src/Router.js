@@ -1,66 +1,34 @@
 import React, { useLayoutEffect } from "react";
+
+import PrivateRoute from "./lib/auth/PrivateRoute/PrivateRoute";
 import {
-    BrowserRouter as Router, Route, Switch
+    BrowserRouter as Router, Route, Switch, Redirect,
 } from "react-router-dom";
 
-// import Login from "./layouts/Login/LoginWrapper";
-// import Landing from "./layouts/Landing/LandingWrapper";
-
-// function MainRouter() {
-//     return (
-//         <Router>
-//             <Switch>
-//                 <Route exact path="/" children={<Login/>} />
-//                 <Route path="/home" children={<Landing/>} />
-//             </Switch>
-//         </Router>
-//     )
-// }
-
-// export default MainRouter;
-
-
-import "bulma/css/bulma.css"
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-
-import { connect } from "react-redux"
+import Login from "./layouts/Login";
+import Landing from "./layouts/Landing/Landing";
+import Register from "./layouts/Register";
 import { fetchUser } from "./store/users/actions"
 
-import Home from "./components/home"
-import Header from "./components/header"
-import Public from "./components/public"
-import Private from "./components/private"
-import Login from "./components/login"
-import Register from "./components/register"
-import PrivateRoute from "./lib/auth/private-route"
-
-
-function MainRouter({ fetchUser }) {
+function MainRouter() {
     useLayoutEffect(() => {
         fetchUser()
-    }, [])
+    }, []);
 
     return (
         <Router>
-            <section className="section">
-                <div className="container">
-                    <Header />
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/public" component={Public} />
-                        <PrivateRoute path="/private" component={Private} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                    </Switch>
-                    <ToastContainer autoClose={3000} hideProgressBar />
-                </div>
-            </section>
+            <Switch>
+                <Route exact path="/" render={() => {
+                    return (
+                        <Redirect to="/login" />
+                    )
+                }} />
+                <Route path="/login" children={<Login/>} />
+                <Route path="/register" children={<Register />} />
+                <PrivateRoute path="/home" component={Landing} />
+            </Switch>
         </Router>
     )
 }
 
-export default connect(
-    null,
-    { fetchUser }
-)(MainRouter)
+export default MainRouter;
