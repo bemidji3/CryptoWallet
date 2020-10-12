@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import {
     BrowserRouter as Router, Route, Switch
 } from "react-router-dom";
@@ -23,15 +23,24 @@ import {
 import "bulma/css/bulma.css"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+
+import { connect } from "react-redux"
+import { fetchUser } from "./store/users/actions"
+
 import Home from "./components/home"
 import Header from "./components/header"
 import Public from "./components/public"
 import Private from "./components/private"
 import Login from "./components/login"
 import Register from "./components/register"
+import PrivateRoute from "./lib/auth/private-route"
 
 
-function MainRouter() {
+function MainRouter({ fetchUser }) {
+    useLayoutEffect(() => {
+        fetchUser()
+    }, [])
+
     return (
         <Router>
             <section className="section">
@@ -40,7 +49,7 @@ function MainRouter() {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/public" component={Public} />
-                        <Route path="/private" component={Private} />
+                        <PrivateRoute path="/private" component={Private} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                     </Switch>
@@ -51,4 +60,7 @@ function MainRouter() {
     )
 }
 
-export default MainRouter;
+export default connect(
+    null,
+    { fetchUser }
+)(MainRouter)

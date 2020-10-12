@@ -36,3 +36,34 @@ export const login = (email, password) => async dispatch => {
     throw error
   }
 }
+
+export const logout = () => async dispatch => {
+  try {
+    await auth.signOut()
+    dispatch({ type: "LOGOUT", currentUser: auth.currentUser })
+  } catch (error) {
+    throw error
+  }
+}
+
+export const fetchUser = () => async dispatch => {
+  try {
+    await auth.onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        localStorage.setItem("isAuthenticated", true)
+        dispatch({
+          type: "FETCH_USER",
+          currentUser: currentUser.toJSON(),
+        })
+      } else {
+        localStorage.removeItem("isAuthenticated")
+        dispatch({
+          type: "FETCH_USER",
+          currentUser: null,
+        })
+      }
+    })
+  } catch (error) {
+    throw error
+  }
+}
