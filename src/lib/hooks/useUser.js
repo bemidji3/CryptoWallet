@@ -1,17 +1,22 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createNewUser } from "../../store/users/actions";
-import { changePage } from "../../store/pages/actions";
+import { register, login } from "../../store/users/actions";
 
 export default () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const registerUser = body => {
-        dispatch(createNewUser(body))
-            .then(history.push("/home"), dispatch(changePage("home")))
-            .catch((error) => console.log(error));
+    const registerUser = ({
+        firstName, lastName, email, dateOfBirth, userName, password
+    }) => {
+        console.log(email)
+        console.log(password)
+        return dispatch(register(email, password))
     };
 
-    return { registerUser };
+    const loginUser = ({ email, password }) => {
+        return dispatch(login(email, password))
+    };
+
+    return { registerUser, loginUser };
 }

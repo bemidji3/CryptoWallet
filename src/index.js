@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store";
 
 const initialState = {
-  page: {},
+//   page: {},
 };
 
 const store = configureStore(initialState);

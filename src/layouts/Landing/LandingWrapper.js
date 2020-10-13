@@ -3,7 +3,7 @@ import Landing from "./Landing";
 
 function LandingWrapper() {
     return (
-        <Landing/>
+        <Landing />
     )
 }
 
