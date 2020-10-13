@@ -6,10 +6,12 @@ export default () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const registerUser = (email, password) => {
+    const registerUser = ({
+        firstName, lastName, email, dateOfBirth, userName, password
+    }) => {
+        console.log(email)
+        console.log(password)
         return dispatch(register(email, password))
-            .then(history.push("/home"))
-            .catch((error) => console.log(error));
     };
 
     const loginUser = ({ email, password }) => {

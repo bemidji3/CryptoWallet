@@ -10,8 +10,7 @@ function RegisterWrapper() {
     const { registerUser } = useUser();
     const history = useHistory();
 
-    const onSubmit = (event, data) => {
-        event.preventDefault();
+    const onSubmit = (data) => {
         registerUser(data).then(() => {
             toast.success("Registration successful");
             history.push("/home")
@@ -32,7 +31,7 @@ function RegisterWrapper() {
         <Register
             formData={formData}
             handleChange={handleChange}
-            handleSubmit={simpleSubmit}
+            onSubmit={simpleSubmit}
         />
     )
 }

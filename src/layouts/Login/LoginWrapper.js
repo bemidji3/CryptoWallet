@@ -11,12 +11,10 @@ function LoginWrapper() {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    loginUser(data)
-        .then(() => {
+    loginUser(data).then(() => {
           toast.success("Login successful");
           history.push("/home")
-        })
-        .catch(error => {
+        }).catch(error => {
           toast.error("Login failed");
           console.error(error)
         })

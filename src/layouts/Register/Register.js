@@ -3,9 +3,11 @@ import Form from "../../components/Form";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
-function Register({  formData,
-                      handleChange, onSubmit}) {
-
+function Register({
+    formData,
+    handleChange, 
+    onSubmit
+}) {
     const { firstName, lastName, userName, password, email, dateOfBirth } = formData;
     return (
         <div className="Register">
