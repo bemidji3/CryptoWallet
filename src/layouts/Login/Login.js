@@ -26,6 +26,7 @@ function Login({
               onChange={(_, { value }) => handleChange("email", value)}
             />
             <Input
+                type="password"
                 label="Password"
                 value={password}
                 onChange={(_, { value }) => handleChange("password", value)}

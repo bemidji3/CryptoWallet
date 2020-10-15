@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
 import "semantic-ui-css/components/grid.css";
+import Button from "../../components/Button";
 
-function Landing() {
+function Landing({onLogout}) {
   return (
     <Grid celled>
       <Grid.Row>
@@ -12,6 +13,13 @@ function Landing() {
       </Grid.Row>
       <Grid.Row style={{height: "100vh"}}>
         <Grid.Column width={4}>
+          <Button
+            onClick={() => {
+              onLogout()
+            }}
+          >
+            Logout
+          </Button>
           <div style={{ backgroundColor: "orange", height: "100%", }}>LEFT TEXT</div>
         </Grid.Column>
         <Grid.Column width={8}>

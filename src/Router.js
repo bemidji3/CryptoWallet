@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Login from "./layouts/Login";
-import Landing from "./layouts/Landing/Landing";
+import Landing from "./layouts/Landing";
 import Register from "./layouts/Register";
 import { fetchUser } from "./store/users/actions"
 
