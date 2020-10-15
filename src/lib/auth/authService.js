@@ -19,8 +19,5 @@ const getAuthenticationStatus = () => {
         return auth.currentUser
     }
 };
-        return auth
-    }
-}
 
 export { auth, getAuthenticationStatus }
