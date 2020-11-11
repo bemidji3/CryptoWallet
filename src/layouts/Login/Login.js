@@ -8,7 +8,6 @@ import Link from "../../components/Link";
 import "./Login.scss";
 
 function Login({
-  loginString,
   onSubmit,
   formData,
   handleChange,
@@ -18,7 +17,7 @@ function Login({
     <Grid columns={1}>
       <Grid.Column width={16}>
         <div className="MainLoginContent">
-          {loginString}
+
           <Form>
             <Input
               label="Email"

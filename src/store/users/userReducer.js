@@ -1,5 +1,6 @@
 const initialState = {
-    errors: []
+    errors: [],
+    user: {},
 }
 
 export default function firebaseReducer(state = initialState, action) {
@@ -8,6 +9,11 @@ export default function firebaseReducer(state = initialState, action) {
             return {
                 ...state,
                 errors: "loginError",
+            };
+        case "RECEIVE_USER_DATA":
+            return {
+                ...state,
+                user: action.userData,
             };
         case "REGISTER_SUCCESS":
         case "LOGIN_SUCCESS":

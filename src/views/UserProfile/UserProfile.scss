@@ -1,0 +1,11 @@
+.UserProfile {
+  .TopSection {
+    margin-bottom: 10px;
+  }
+
+  .UserStats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -4,7 +4,7 @@ import { initialValues } from "./config";
 import useUser from "../../lib/hooks/useUser";
 import useForm from "../../lib/hooks/useForm"
 import {toast} from "react-toastify";
-import {useHistory} from "react-router";
+import {useHistory} from "react-router-dom";
 
 function RegisterWrapper() {
     const { registerUser } = useUser();
