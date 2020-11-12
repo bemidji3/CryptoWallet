@@ -1,13 +1,18 @@
-import React from "react";
+import React, {useLayoutEffect} from "react";
 import { Grid } from "semantic-ui-react";
 import "semantic-ui-css/components/grid.css";
 import Button from "../../components/Button";
 import UserProfile from "../../views/UserProfile";
 import BuySection from "../../views/BuySection";
 import SellSection from "../../views/SellSection";
+import OrderHistory from "../../views/OrderHistory";
 import "./Landing.scss"
 
-function Landing({onLogout}) {
+function Landing({onLogout, getOrders, email}) {
+  useLayoutEffect(() => {
+    getOrders(email)
+  }, []);
+
   return (
       <div className="LandingPage">
         <Grid celled>
@@ -25,6 +30,9 @@ function Landing({onLogout}) {
                 <div className="BuySellSection">
                   <BuySection />
                   <SellSection />
+                </div>
+                <div className="OrderHistory">
+                  <OrderHistory/>
                 </div>
               </Grid.Row>
             </Grid.Column>

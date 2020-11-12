@@ -3,13 +3,21 @@ import useForm from "../../lib/hooks/useForm";
 import useCurrency from "../../lib/hooks/useCurrency";
 import {currencyOptions, initialValues, typeOptions} from "./config";
 import SellSection from "./SellSection";
+import useUser from "../../lib/hooks/useUser";
 
 function SellSectionWrapper() {
 
-    const { submitBuyOrder } = useCurrency();
+    const { submitSellOrder } = useCurrency();
+    const { getCurrentUser } = useUser();
+
+    const currentUserEmail = getCurrentUser();
 
     const onSubmit = (data) => {
-        submitBuyOrder(data);
+        const wrappedData = {
+            ...data,
+            email: currentUserEmail,
+        };
+        submitSellOrder(wrappedData);
     };
     const {
         formData,

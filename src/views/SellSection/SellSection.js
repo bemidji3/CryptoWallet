@@ -57,7 +57,9 @@ function SellSection({ formData, handleChange, onSubmit, currencyDropdownOptions
                             />
                         </FormField>
                         <Button
-                            onClick={onSubmit(formData)}
+                            onClick={() => {
+                                onSubmit(formData)
+                            }}
                         >
                             Submit Sell Request
                         </Button>

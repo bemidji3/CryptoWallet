@@ -7,7 +7,8 @@ import { combineReducers } from "redux";
 
 
 import currentUser from "../store/users/userReducer";
+import currenciesReducer from "../store/currencies/currenciesReducer";
 
-const appReducer = combineReducers({ currentUser });
+const appReducer = combineReducers({ currentUser, currenciesReducer });
 
 export default appReducer;

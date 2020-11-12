@@ -3,13 +3,22 @@ import useForm from "../../lib/hooks/useForm";
 import useCurrency from "../../lib/hooks/useCurrency";
 import {currencyOptions, initialValues, typeOptions} from "./config";
 import BuySection from "./BuySection";
+import useUser from "../../lib/hooks/useUser";
 
 function BuySectionWrapper() {
 
     const { submitBuyOrder } = useCurrency();
+    const { getCurrentUser } = useUser();
+
+    const currentUserEmail = getCurrentUser();
 
     const onSubmit = (data) => {
-        submitBuyOrder(data);
+        console.log("submitting buy order")
+        const wrappedData = {
+            ...data,
+            email: currentUserEmail,
+        };
+        submitBuyOrder(wrappedData);
     };
     const {
         formData,

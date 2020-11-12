@@ -1,4 +1,5 @@
 .LandingPage {
+  width: 100%;
   .RightSideProfile {
     display: flex;
     flex-direction: column;
@@ -8,6 +9,14 @@
   .BuySellSection {
     display: flex;
     flex-direction: row;
-    align-self: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .OrderHistory {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 10px;
   }
 }

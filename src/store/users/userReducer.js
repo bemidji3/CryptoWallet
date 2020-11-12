@@ -1,7 +1,7 @@
 const initialState = {
     errors: [],
     user: {},
-}
+};
 
 export default function firebaseReducer(state = initialState, action) {
     switch (action.type) {

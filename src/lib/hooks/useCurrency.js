@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { createBuy } from "../../store/currencies/actions";
+import { createBuy, createSell, fetchOrders } from "../../store/currencies/actions";
 
 export default () => {
     const dispatch = useDispatch();
@@ -9,8 +9,12 @@ export default () => {
     };
 
     const submitSellOrder = (sellInfo) => {
-        return dispatch();
-    }
+        return dispatch(createSell(sellInfo));
+    };
 
-    return { submitBuyOrder }
+    const getOrders = (email) => {
+        return dispatch(fetchOrders(email))
+    };
+
+    return { submitBuyOrder, submitSellOrder, getOrders, }
 }
