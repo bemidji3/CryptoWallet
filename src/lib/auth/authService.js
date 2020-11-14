@@ -20,4 +20,8 @@ const getAuthenticationStatus = () => {
     }
 };
 
-export { auth, getAuthenticationStatus }
+const getCurrentUser = () => {
+    return auth.currentUser;
+}
+
+export { auth, getAuthenticationStatus, getCurrentUser }

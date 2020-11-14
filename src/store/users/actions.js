@@ -1,9 +1,5 @@
 import { auth } from "../../lib/auth/authService"
-// import {
-//   sendRegistrationRequest,
-//   receiveRegistrationResponse,
-// } from "../requests/actions";
-// import { post } from "../../lib/Api";
+ import { post } from "../../lib/Api";
 
 export const loginSuccess = () => {
   return {
@@ -19,38 +15,55 @@ export const loginFailure = () => {
   }
 };
 
-export const registerSuccess = () => {
+export const registerSuccess = (body) => {
   return {
     type: "REGISTER_SUCCESS",
     currentUser: auth.currentUser.toJSON(),
+    user: body,
   }
 };
 
-export const registerFailure = () => {
+export const registerFailure = (error) => {
   return {
     type: "REGISTER FAILURE",
     currentUser: null,
+    errors: error,
   }
 };
 
-export const register = (email, password) => async dispatch => {
-  try {
-    await auth.createUserWithEmailAndPassword(email, password);
-    dispatch(registerSuccess());
-  } catch (error) {
-    dispatch(registerFailure());
-    throw error
+export const receiveUserData = (data) => {
+  return {
+    type: "RECEIVE_USER_DATA",
+    user: data,
   }
 };
 
-export const login = (email, password) => async dispatch => {
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    dispatch(loginSuccess());
-  } catch (error) {
-    dispatch(loginFailure());
-    throw error
+export const userDataFailure = (error) => {
+  return {
+    type: "USER_DATA_FAILURE",
+    errors: error,
   }
+}
+
+export const register = (email, password, personalInfo) => dispatch => {
+    return auth.createUserWithEmailAndPassword(email, password).then(() => {
+      post("http://localhost:6969/new-user", personalInfo).then(newResult => {
+        dispatch(registerSuccess(newResult));
+      })
+    }).catch(error => {
+      console.log("error ", error);
+      dispatch(registerFailure(error));
+    });
+
+};
+
+export const login = (email, password) => dispatch => {
+  return auth.signInWithEmailAndPassword(email, password).then((result) => {
+    dispatch(loginSuccess(result));
+    }).catch(error => {
+      dispatch(loginFailure(error));
+    })
+
 };
 
 export const logout = () => async dispatch => {
@@ -60,6 +73,16 @@ export const logout = () => async dispatch => {
   } catch (error) {
     throw error
   }
+};
+
+export const fetchCustomUser = (email) => dispatch => {
+  return post("http://localhost:6969/get-user-info", {email: email}).then(result => {
+    dispatch(receiveUserData(result));
+    return result;
+  }).catch(error => {
+    dispatch(userDataFailure(error));
+    return error;
+  });
 };
 
 export const fetchUser = () => async dispatch => {

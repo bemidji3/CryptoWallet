@@ -1,0 +1,22 @@
+.LandingPage {
+  width: 100%;
+  .RightSideProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .BuySellSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .OrderHistory {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 10px;
+  }
+}

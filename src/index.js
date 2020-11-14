@@ -5,9 +5,10 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import configureStore from "./store";
+import 'semantic-ui-css/semantic.min.css'
 
 const initialState = {
-//   page: {},
+   user: {},
 };
 
 const store = configureStore(initialState);
